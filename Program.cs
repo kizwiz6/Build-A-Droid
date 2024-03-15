@@ -27,14 +27,33 @@
             Console.WriteLine("Battery level: " + batteryLevel);
         }
 
+        public void energyTransfer(Droid otherDroid)
+        {
+            int transferAmount = (batteryLevel + otherDroid.batteryLevel) / 2;
+            batteryLevel = transferAmount;
+            otherDroid.batteryLevel = transferAmount;
+        }
+
         public static void Main(string[] args)
         {
             Droid Codey = new Droid("Codey");
+            Droid R2D2 = new Droid("R2D2");
+
             Console.WriteLine(Codey);
             Codey.performTask("Dancing");
             Codey.energyReport();
-            Codey.performTask("Shake ya booty");
+
+            Console.WriteLine(R2D2);
+            R2D2.performTask("Calculating hyperspace routes");
+            R2D2.energyReport();
+
+
+            Codey.energyTransfer(R2D2);
+
+            Console.WriteLine("After energy transfer:");
             Codey.energyReport();
+            R2D2.energyReport();
+
         }
     }
 }
